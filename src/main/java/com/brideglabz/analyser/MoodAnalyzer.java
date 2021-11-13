@@ -7,15 +7,21 @@ public class MoodAnalyzer {
         this.message = message;
     }
 
-    public String analyseMood() {
-        try {
-        if (message.contains("Sad"))
-            return "SAD";
-        else {
-            return "HAPPY";
-        }
-        } catch (NullPointerException nullPointerException) {
-            return "HAPPY";
+    public String analyseMood() throws MoodAnalysisException{
+        try{
+            if (message.length() < 1){
+                throw new MoodAnalysisException("Message can not be Empty.");
+            }
+            if (message.contains("Sad")){
+                return "SAD";
+            }
+            else {
+                return "HAPPY";
+            }
+        } catch (NullPointerException nullPointerException){
+            throw new MoodAnalysisException("Message can not be Null.");
         }
     }
+
+
 }
